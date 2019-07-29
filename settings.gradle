@@ -1,1 +1,1 @@
-include ':app', ':ui_model'
+include ':app', ':ui_model', ':base_library'

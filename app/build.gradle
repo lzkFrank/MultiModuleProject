@@ -14,6 +14,8 @@ android {
         versionCode Integer.parseInt(VERSION_CODE)
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+
+        flavorDimensions "app"
     }
     buildTypes {
         release {
@@ -21,6 +23,24 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+
+    productFlavors {
+        A {
+            manifestPlaceholders = ["APP_NAME": "A"]
+            applicationIdSuffix ".a"
+            dimension 'app'
+        }
+        B {
+            manifestPlaceholders = ["APP_NAME": "B"]
+            applicationIdSuffix ".b"
+            dimension 'app'
+        }
+    }
+}
+
+configurations{
+    aImplemention
+    bImplemention
 }
 
 dependencies {
@@ -30,4 +50,6 @@ dependencies {
     testImplementation "junit:junit:$JUNIT_VERSION"
     androidTestImplementation "com.android.support.test:runner:$RUNNER_VERSION"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
+
+    implementation project(path: ':base_library')
 }
