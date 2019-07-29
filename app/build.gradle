@@ -16,6 +16,7 @@ android {
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
         flavorDimensions "app"
+        missingDimensionStrategy "lib", "A","B"
     }
     buildTypes {
         release {
@@ -38,9 +39,9 @@ android {
     }
 }
 
-configurations{
-    aImplemention
-    bImplemention
+configurations {
+    aImplementation
+    bImplementation
 }
 
 dependencies {
@@ -51,5 +52,7 @@ dependencies {
     androidTestImplementation "com.android.support.test:runner:$RUNNER_VERSION"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
 
-    implementation project(path: ':base_library')
+//    implementation project(path: ':base_library')
+    aImplementation project(path: ':base_library',configuration:"aRelease")
+    bImplementation project(path: ':base_library',configuration:"bRelease")
 }
