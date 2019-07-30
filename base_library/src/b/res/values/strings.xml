@@ -1,4 +1,4 @@
 <resources>
     <string name="app_name">base_library</string>
-    <string name="lib_content">我是mainLib</string>
+    <string name="lib_content">我是BLib</string>
 </resources>

@@ -15,8 +15,7 @@ android {
         versionName VERSION_NAME
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
 
-        flavorDimensions "app"
-        missingDimensionStrategy "lib", "A","B"
+        flavorDimensions 'app'
     }
     buildTypes {
         release {
@@ -26,33 +25,30 @@ android {
     }
 
     productFlavors {
-        A {
+        a {
             manifestPlaceholders = ["APP_NAME": "A"]
             applicationIdSuffix ".a"
             dimension 'app'
+            missingDimensionStrategy "lib", "a"
         }
-        B {
+        b {
             manifestPlaceholders = ["APP_NAME": "B"]
             applicationIdSuffix ".b"
             dimension 'app'
+            missingDimensionStrategy "lib", "b"
         }
     }
 }
 
-configurations {
-    aImplementation
-    bImplementation
-}
-
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
     implementation "com.android.support.constraint:constraint-layout:$CONSTRAINT_LAYOUT_VERSION"
     testImplementation "junit:junit:$JUNIT_VERSION"
     androidTestImplementation "com.android.support.test:runner:$RUNNER_VERSION"
     androidTestImplementation "com.android.support.test.espresso:espresso-core:$ESPRESSO_CORE_VERSION"
+    implementation "com.android.support:appcompat-v7:$SUPPORT_LIBRARY_VERSION"
 
-//    implementation project(path: ':base_library')
-    aImplementation project(path: ':base_library',configuration:"aRelease")
-    bImplementation project(path: ':base_library',configuration:"bRelease")
+    aImplementation project(path: ':base_library')
+    bImplementation project(path: ':base_library')
+
 }
